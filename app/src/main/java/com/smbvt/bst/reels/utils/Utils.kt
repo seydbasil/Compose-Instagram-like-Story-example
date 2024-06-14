@@ -6,10 +6,10 @@ import com.smbvt.bst.reels.models.ReelsModel
 object Utils {
     fun getContent(): List<ReelsModel> {
         return listOf<ReelsModel>(
-            ReelsModel(image = R.drawable.1),
-            ReelsModel(image = R.drawable.2),
-            ReelsModel(image = R.drawable.3),
-            ReelsModel(image = R.drawable.4)
+            ReelsModel(image = R.drawable.blue_lake, "Blue lake"),
+            ReelsModel(image = R.drawable.green_grass, text = "Green grass"),
+            ReelsModel(image = R.drawable.forest_and_river, "Forest and river"),
+            ReelsModel(image = R.drawable.green_mountains, "Green mountains")
         )
     }
 }

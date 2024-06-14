@@ -3,10 +3,7 @@ package com.smbvt.bst.reels.ui.screens
 import android.util.Log
 import android.view.MotionEvent
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
@@ -15,20 +12,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInteropFilter
-import androidx.compose.ui.res.painterResource
 import com.smbvt.bst.reels.models.ReelsModel
-import com.smbvt.bst.reels.ui.theme.PaddingDefault100
-import com.smbvt.bst.reels.ui.theme.PaddingDefault24
-import com.smbvt.bst.reels.ui.theme.fonts.TextTitleWhite
 import com.smbvt.bst.reels.utils.ComposeUtils.getScreenWidth
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class)
 @Composable
-fun StoryPage(
+fun StoryPager(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
     listOfImage: List<ReelsModel>,
@@ -90,15 +82,6 @@ fun StoryPage(
         }
         true
     }) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = listOfImage[it].image),
-                contentDescription = null
-            )
-            TextTitleWhite(
-                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = PaddingDefault100), text = listOfImage[it].text
-            )
-        }
+        StoryPageContent(modifier =  Modifier.fillMaxSize(),item = listOfImage[it])
     }
 }

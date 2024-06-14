@@ -3,11 +3,8 @@ package com.smbvt.bst.reels.ui.screens
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,23 +21,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.smbvt.bst.reels.R
 import com.smbvt.bst.reels.models.ReelsModel
-import com.smbvt.bst.reels.ui.composables.LinearIndicator
+import com.smbvt.bst.reels.ui.composables.LineIndicatorRow
 import com.smbvt.bst.reels.ui.theme.PaddingDefault24
 import com.smbvt.bst.reels.utils.Utils
 import kotlinx.coroutines.launch
 
 @Composable
 fun ReelsScreen(
+    modifier: Modifier = Modifier,
     onClickClose: () -> Unit = {},
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
             .statusBarsPadding()
     ) {
+        // Here we can add common background for all stories
+
 //        Image(
 //            painter = painterResource(id = R.drawable.bg_explainer),
 //            contentDescription = "splashbg",
@@ -49,7 +47,7 @@ fun ReelsScreen(
 //            alignment = Alignment.Center
 //        )
 
-        Stories(
+        StoryScreen(
             Utils.getContent(), onClickClose = onClickClose
         )
     }
@@ -64,9 +62,9 @@ fun PreviewReelsScreen() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Stories(listOfImage: List<ReelsModel>, onClickClose: () -> Unit) {
-    val pagerState = rememberPagerState(
-        initialPage = 0,
+fun StoryScreen(listOfImage: List<ReelsModel>, onClickClose: () -> Unit) {
+
+    val pagerState = rememberPagerState(initialPage = 0,
         initialPageOffsetFraction = 0f,
         pageCount = { listOfImage.size })
     val coroutineScope = rememberCoroutineScope()
@@ -103,44 +101,27 @@ fun Stories(listOfImage: List<ReelsModel>, onClickClose: () -> Unit) {
                 .fillMaxSize()
                 .padding(top = PaddingDefault24)
         ) {
-            Row(
+            LineIndicatorRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = PaddingDefault24),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-//            Spacer(modifier = Modifier.padding(4.dp))
-
-                for (index in listOfImage.indices) {
-                    LinearIndicator(
-                        modifier = Modifier.weight(1f), startProgress = index == currentPage,
-                        isPaused = isPaused,
-                        currentPage,
-                        index
-                    ) {
-                        if (index == listOfImage.size - 1) {
-                            onClickClose()
-                        } else {
-                            moveToNext()
-                        }
-                    }
-
-                    if (index < listOfImage.size - 1) {
-                        Spacer(modifier = Modifier.padding(4.dp))
-                    }
-                }
-            }
+                isPaused = isPaused,
+                currentPage = currentPage,
+                onClickClose = onClickClose,
+                moveToNext = {
+                    moveToNext()
+                },
+                listOfImage = listOfImage.size
+            )
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(1f),
             ) {
-
                 var pagePosition by remember {
                     mutableIntStateOf(0)
                 }
-
-                StoryPage(modifier = Modifier.fillMaxSize(),
+                StoryPager(modifier = Modifier.fillMaxSize(),
                     pagerState = pagerState,
                     listOfImage = listOfImage,
                     onClickLeft = {
