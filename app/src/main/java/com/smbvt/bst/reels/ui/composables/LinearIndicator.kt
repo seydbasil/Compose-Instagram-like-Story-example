@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.smbvt.bst.reels.ui.theme.White6BFFFFFF
 import kotlinx.coroutines.delay
 
 @Composable
@@ -52,7 +53,7 @@ fun LinearIndicator(
         label = ""
     )
     LinearProgressIndicator(
-        trackColor = Color.White,
+        trackColor = White6BFFFFFF,
 
         modifier = modifier
             .padding(top = 12.dp, bottom = 12.dp)
