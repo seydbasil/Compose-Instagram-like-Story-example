@@ -9,13 +9,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.smbvt.bst.reels.R
-import com.smbvt.bst.reels.ui.theme.fonts.CustomText
+import com.smbvt.bst.reels.ui.theme.fonts.AnimatedText
 
 @Composable
 fun MainScreen(onClickViewReels: () -> Unit = {}) {
     Box(modifier = Modifier.fillMaxSize()) {
         Button(modifier = Modifier.align(Alignment.Center), onClick = { onClickViewReels() }) {
-            CustomText(text = stringResource(id = R.string.view_reels))
+            AnimatedText(text = stringResource(id = R.string.view_reels))
         }
     }
 }
