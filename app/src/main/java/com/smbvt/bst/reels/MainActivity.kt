@@ -10,6 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.smbvt.bst.reels.ui.navigation.ReelsNavHost
+import com.smbvt.bst.reels.ui.screens.MainScreen
 import com.smbvt.bst.reels.ui.screens.ReelsScreen
 import com.smbvt.bst.reels.ui.theme.ComposeInstagramLikeReelsExampleTheme
 
@@ -23,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ReelsScreen()
+                    ReelsNavHost()
                 }
             }
         }
