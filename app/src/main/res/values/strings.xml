@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Compose instagram like Reels example</string>
-    <string name="view_reels">View reels</string>
+    <string name="view_stories">View stories</string>
 </resources>

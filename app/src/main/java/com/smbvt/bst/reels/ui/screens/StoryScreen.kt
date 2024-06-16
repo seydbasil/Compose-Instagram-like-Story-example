@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ReelsScreen(
+fun StoryScreen(
     modifier: Modifier = Modifier,
     onClickClose: () -> Unit = {},
 ) {
@@ -127,6 +127,6 @@ fun ReelsScreen(
 
 @Preview
 @Composable
-fun PreviewReelsScreen() {
-    ReelsScreen()
+fun PreviewStoryScreen() {
+    StoryScreen()
 }

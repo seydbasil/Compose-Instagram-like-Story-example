@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Compose instagram like Reels example"
+rootProject.name = "Compose instagram like Story example"
 include(":app")
  

@@ -15,7 +15,7 @@ import com.smbvt.bst.reels.ui.theme.fonts.AnimatedText
 fun MainScreen(onClickViewReels: () -> Unit = {}) {
     Box(modifier = Modifier.fillMaxSize()) {
         Button(modifier = Modifier.align(Alignment.Center), onClick = { onClickViewReels() }) {
-            AnimatedText(text = stringResource(id = R.string.view_reels))
+            AnimatedText(text = stringResource(id = R.string.view_stories))
         }
     }
 }
