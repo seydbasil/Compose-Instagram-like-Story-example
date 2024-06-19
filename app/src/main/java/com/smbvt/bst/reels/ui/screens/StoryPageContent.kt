@@ -11,7 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.smbvt.bst.reels.models.ReelsModel
 import com.smbvt.bst.reels.ui.theme.PaddingDefault100
-import com.smbvt.bst.reels.ui.theme.fonts.TextTitleWhite
+import com.smbvt.bst.reels.ui.theme.texts.TextTitleWhite
 
 @Composable
 fun StoryPageContent(modifier: Modifier = Modifier, item: ReelsModel) {

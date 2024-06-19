@@ -10,21 +10,30 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.smbvt.bst.reels.utils.getActivity
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    background = Dark,
+    surface = Dark
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40,
+    background = White,
+    surface = White
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -41,9 +50,18 @@ private val LightColorScheme = lightColorScheme(
 fun ComposeInstagramLikeReelsExampleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    dynamicColor: Boolean = false, content: @Composable () -> Unit
 ) {
+    val systemUI = rememberSystemUiController()
+    systemUI.setStatusBarColor(color = Color.Transparent)
+    systemUI.setNavigationBarColor(color = Color.Black)
+
+    val context = LocalContext.current
+    val window = context.getActivity()!!.window
+    val decorView = window.decorView
+    val wic = WindowInsetsControllerCompat(window, decorView)
+    wic.isAppearanceLightStatusBars = !darkTheme // true or false as desired.
+
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
@@ -63,8 +81,6 @@ fun ComposeInstagramLikeReelsExampleTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+        colorScheme = colorScheme, typography = Typography, content = content
     )
 }

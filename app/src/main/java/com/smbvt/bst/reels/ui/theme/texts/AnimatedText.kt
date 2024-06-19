@@ -1,4 +1,4 @@
-package com.smbvt.bst.reels.ui.theme.fonts
+package com.smbvt.bst.reels.ui.theme.texts
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState

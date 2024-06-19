@@ -1,5 +1,6 @@
-package com.smbvt.bst.reels.ui.theme.fonts
+package com.smbvt.bst.reels.ui.theme.texts
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,6 +15,6 @@ fun TextTitleWhite(modifier: Modifier = Modifier, text: String) {
     Text(
         modifier = modifier,
         text = text,
-        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = FontSize24, color = Color.White),
+        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = FontSize24, color = if (isSystemInDarkTheme()) Color.White else Color.Black),
     )
 }
