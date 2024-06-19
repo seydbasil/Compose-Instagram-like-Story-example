@@ -15,9 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.smbvt.bst.reels.ui.theme.White6BFFFFFF
+import com.smbvt.bst.reels.ui.theme.AlphaWhite6BFFFFFF
 import kotlinx.coroutines.delay
 
+
+/**
+ *  @param delayInMillis can be used to hold the page for a specific time
+ *  @param isPaused can be used to pause the page for a while, for ex : when a user click on the story page, just pass isPaused true, then the page do not change automatically
+ */
 @Composable
 fun LinearIndicator(
     modifier: Modifier,
@@ -25,7 +30,10 @@ fun LinearIndicator(
     isPaused: Boolean,
     currentPage: Int,
     index: Int,
-    onAnimationEnd: () -> Unit,
+    onPageHoldEnd: () -> Unit,
+    trackBackgroundColor: Color = AlphaWhite6BFFFFFF,
+    activeTrackBackgroundColor: Color = Color.White,
+    delayInMillis : Long = 5000
 ) {
     var progress by remember {
         mutableFloatStateOf(0.00f)
@@ -37,10 +45,10 @@ fun LinearIndicator(
                 if((currentPage == index) && !isPaused) {
                     progress += 0.01f
                 }
-                delay(70) // 5 sec -> 5000/100 -> 50
+                delay(delayInMillis / 100) // 5 sec -> 5000/100 -> 50
             }
 
-            onAnimationEnd()
+            onPageHoldEnd()
         })
     } else {
         progress = 0.00f
@@ -53,12 +61,12 @@ fun LinearIndicator(
         label = ""
     )
     LinearProgressIndicator(
-        trackColor = White6BFFFFFF,
+        trackColor = trackBackgroundColor,
 
         modifier = modifier
             .padding(top = 12.dp, bottom = 12.dp)
             .clip(
                 RoundedCornerShape(12.dp)
-            ), color = Color.White, progress = animatedProgress
+            ), color = activeTrackBackgroundColor, progress = animatedProgress
     )
 }

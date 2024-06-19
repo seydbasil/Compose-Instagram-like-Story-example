@@ -39,17 +39,7 @@ fun StoryPager(
     var initialTime by remember {
         mutableLongStateOf(0)
     }
-    HorizontalPager(userScrollEnabled = false, state = pagerState, modifier = modifier./*pointerInput(Unit) {
-            detectTapGestures { offset ->
-                Timber.e("offset : ${offset.x}, screenWidth : $screenWidth")
-                val halfWidth = screenWidth / 2
-                if (offset.x > halfWidth) {
-                    onCLickRight()
-                } else {
-                    onClickLeft()
-                }
-            }
-        }.*/pointerInteropFilter {
+    HorizontalPager(userScrollEnabled = false, state = pagerState, modifier = modifier.pointerInteropFilter {
         when (it.action) {
             MotionEvent.ACTION_DOWN -> {
                 initialTime = System.currentTimeMillis()
@@ -64,7 +54,7 @@ fun StoryPager(
                 val currentTime = System.currentTimeMillis()
                 val threshold = currentTime - initialTime
                 onResume()
-                if (threshold > 300L) {
+                if (threshold > 300L) { // when user action up, will calculate the user long press time to identify whether we need to scroll to next page or just keep in the same page
                     // resume
                 } else {
                     val halfWidth = screenWidth / 2

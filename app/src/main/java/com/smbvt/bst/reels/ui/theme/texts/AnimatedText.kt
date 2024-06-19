@@ -14,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.text.TextStyle
 import com.smbvt.bst.reels.ui.theme.FontSize36
@@ -26,7 +27,7 @@ const val GRADIENT_OFFSET_START = 0f
 const val GRADIENT_WIDTH = 500f
 
 @Composable
-fun AnimatedText(text: String) {
+fun AnimatedText(text: String, colors : List<Color> = listOf(Yellow, Red)) {
     var isStart by remember {
         mutableStateOf(false)
     }
@@ -45,7 +46,7 @@ fun AnimatedText(text: String) {
     val gradientStartOffset = gradientOffsetAnimation
     val gradientEndOffset = gradientStartOffset + GRADIENT_WIDTH
     val textColor = Brush.linearGradient(
-        colors = listOf(Yellow, Red),
+        colors = colors,
         tileMode = TileMode.Mirror,
         start = Offset(gradientStartOffset, 0f),
         end = Offset(gradientEndOffset, 0f)

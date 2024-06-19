@@ -2,6 +2,7 @@ package com.smbvt.bst.reels.ui.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.smbvt.bst.reels.R
-import com.smbvt.bst.reels.ui.composables.LineIndicatorRow
+import com.smbvt.bst.reels.ui.composables.StoryTracker
+import com.smbvt.bst.reels.ui.theme.AlphaBlack30000000
 import com.smbvt.bst.reels.ui.theme.PaddingDefault24
 import com.smbvt.bst.reels.utils.Utils
 import kotlinx.coroutines.launch
@@ -73,7 +75,7 @@ fun StoryScreen(
         // Here we can add common background for all stories
 
 //        Image(
-//            painter = painterResource(id = R.drawable.bg_explainer),
+//            painter = painterResource(id = R.drawable.bg_story),
 //            contentDescription = "splashbg",
 //            modifier = Modifier.fillMaxSize(),
 //            contentScale = ContentScale.Crop,
@@ -100,19 +102,21 @@ fun StoryScreen(
             },
             onChangePage = { pagePosition = it })
 
-        LineIndicatorRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopCenter)
-                .padding(horizontal = PaddingDefault24),
-            isPaused = isPaused,
-            currentPage = currentPage,
-            onClickClose = onClickClose,
-            moveToNext = {
-                moveToNext()
-            },
-            listOfImage = listOfImage.size
-        )
+        Box(modifier = Modifier.background(color = AlphaBlack30000000)){
+            StoryTracker(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.TopCenter)
+                    .padding(horizontal = PaddingDefault24),
+                isPaused = isPaused,
+                currentPage = currentPage,
+                onClickClose = onClickClose,
+                moveToNext = {
+                    moveToNext()
+                },
+                listOfImage = listOfImage.size
+            )
+        }
 
         Image(painter = painterResource(id = R.drawable.ic_close_reels),
             contentDescription = null,

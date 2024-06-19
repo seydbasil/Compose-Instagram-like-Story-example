@@ -11,7 +11,7 @@ import com.smbvt.bst.reels.ui.theme.FontSize24
 
 
 @Composable
-fun TextTitleWhite(modifier: Modifier = Modifier, text: String) {
+fun TextTitleBlack(modifier: Modifier = Modifier, text: String) {
     Text(
         modifier = modifier,
         text = text,
