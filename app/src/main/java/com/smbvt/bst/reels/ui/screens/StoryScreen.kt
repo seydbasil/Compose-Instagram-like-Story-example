@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.smbvt.bst.reels.R
+import com.smbvt.bst.reels.ui.composables.PaddedContentBox
 import com.smbvt.bst.reels.ui.composables.StoryTracker
 import com.smbvt.bst.reels.ui.theme.AlphaBlack30000000
 import com.smbvt.bst.reels.ui.theme.PaddingDefault24
@@ -67,10 +69,9 @@ fun StoryScreen(
         }
     }
 
-    Box(
+    PaddedContentBox(
         modifier = modifier
             .fillMaxSize()
-            .statusBarsPadding()
     ) {
         // Here we can add common background for all stories
 
