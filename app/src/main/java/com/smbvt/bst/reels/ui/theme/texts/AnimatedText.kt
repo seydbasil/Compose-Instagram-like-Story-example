@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.text.TextStyle
-import com.smbvt.bst.reels.ui.theme.FontSize36
+import com.smbvt.bst.reels.ui.theme.FontSize24
 import com.smbvt.bst.reels.ui.theme.Red
 import com.smbvt.bst.reels.ui.theme.Yellow
 
@@ -54,6 +54,6 @@ fun AnimatedText(text: String, colors : List<Color> = listOf(Yellow, Red)) {
     Text(
         modifier = Modifier,
         text = text,
-        style = TextStyle(brush = textColor, fontSize = FontSize36)
+        style = TextStyle(brush = textColor, fontSize = FontSize24)
     )
 }

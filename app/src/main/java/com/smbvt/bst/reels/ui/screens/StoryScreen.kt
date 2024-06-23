@@ -1,16 +1,17 @@
 package com.smbvt.bst.reels.ui.screens
 
+import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -25,8 +26,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.smbvt.bst.reels.R
 import com.smbvt.bst.reels.ui.composables.PaddedContentBox
 import com.smbvt.bst.reels.ui.composables.StoryTracker
-import com.smbvt.bst.reels.ui.theme.AlphaBlack30000000
-import com.smbvt.bst.reels.ui.theme.PaddingDefault24
+import com.smbvt.bst.reels.ui.theme.GradientBlackTransparent
+import com.smbvt.bst.reels.ui.theme.PaddingDefault12
+import com.smbvt.bst.reels.ui.theme.PaddingDefault36
+import com.smbvt.bst.reels.ui.theme.PaddingDefault4
 import com.smbvt.bst.reels.utils.Utils
 import kotlinx.coroutines.launch
 
@@ -70,8 +73,7 @@ fun StoryScreen(
     }
 
     PaddedContentBox(
-        modifier = modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         // Here we can add common background for all stories
 
@@ -103,35 +105,47 @@ fun StoryScreen(
             },
             onChangePage = { pagePosition = it })
 
-        Box(modifier = Modifier.background(color = AlphaBlack30000000)){
+        Box(modifier = Modifier.background(brush = GradientBlackTransparent)) {
             StoryTracker(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.TopCenter)
-                    .padding(horizontal = PaddingDefault24),
+                    .padding(
+                        start = PaddingDefault4, end = PaddingDefault4, bottom = PaddingDefault36
+                    ),
                 isPaused = isPaused,
                 currentPage = currentPage,
                 onClickClose = onClickClose,
                 moveToNext = {
                     moveToNext()
                 },
-                listOfImage = listOfImage.size
+                pageCount = listOfImage.size
             )
         }
 
         Image(painter = painterResource(id = R.drawable.ic_close_reels),
             contentDescription = null,
             modifier = Modifier
-                .padding(PaddingDefault24)
-                .align(Alignment.BottomCenter)
-                .clickable {
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple(bounded = false),
+                ) {
                     onClickClose()
-                })
+                }
+                .padding(PaddingDefault12)
+                .align(Alignment.TopStart))
     }
 }
 
 @Preview
 @Composable
 fun PreviewStoryScreen() {
+    StoryScreen()
+}
+
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun PreviewStoryScreenNight() {
     StoryScreen()
 }

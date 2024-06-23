@@ -32,7 +32,6 @@ fun StoryPageContent(modifier: Modifier = Modifier, item: ReelsModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = PaddingDefault100)
                 .background(color = if (isSystemInDarkTheme()) AlphaBlack30000000 else AlphaWhite30FFFFFF)
                 .padding(PaddingDefault10)
         ) {

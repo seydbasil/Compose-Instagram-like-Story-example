@@ -6,8 +6,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+val PaddingDefault4 = 4.dp
 val PaddingDefault10 = 10.dp
+val PaddingDefault12 = 12.dp
 val PaddingDefault24 = 24.dp
+val PaddingDefault36 = 36.dp
 val PaddingDefault100 = 100.dp
 
 
