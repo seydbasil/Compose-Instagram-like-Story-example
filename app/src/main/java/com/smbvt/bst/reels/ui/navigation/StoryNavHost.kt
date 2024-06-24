@@ -21,7 +21,7 @@ fun StoryNavHost() {
         }
         composable(storyScreen) {
             StoryScreen(onClickClose = {
-                navController.popBackStack()
+                navController.navigateUp()
             })
         }
     }
